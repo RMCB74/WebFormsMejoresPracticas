@@ -1,0 +1,23 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Compilación
+[Bb]in/
+[Oo]bj/
+
+# Pruebas
+TestResults/
+*.trx
+
+# Archivos temporales
+*.tmp
+*.log
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# NuGet
+packages/

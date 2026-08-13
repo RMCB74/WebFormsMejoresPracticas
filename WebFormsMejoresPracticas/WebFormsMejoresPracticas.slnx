@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../WebFormsMejoresPracticas.Tests/WebFormsMejoresPracticas.Tests.csproj" Id="ac81a85b-977a-49bd-8ca7-8a186dd4fe7a" />
+  <Project Path="WebFormsMejoresPracticas.csproj" Id="c97ba179-1214-4e8f-a5ae-083861cc8780" />
+</Solution>
