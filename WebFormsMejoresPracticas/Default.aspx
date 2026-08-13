@@ -168,6 +168,25 @@
 
             </div>
 
+            <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="mb-0">Contactos</h5>
+                    </div>
+
+                    <div class="col-md-6">
+                        <asp:TextBox
+                            ID="txtBuscar"
+                            runat="server"
+                            CssClass="form-control"
+                            placeholder="Buscar contacto en esta pág n_n+1..."
+                            onkeyup="filtrarContactos()" />
+                    </div>
+                </div>
+    </div>
+
+
             <div class="card-body p-0">
 
                 <div class="table-responsive">
@@ -178,7 +197,12 @@
                         AutoGenerateColumns="false"
                         OnRowCommand="gvClientes_RowCommand"
                         CssClass="table table-hover table-striped mb-0"
-                        GridLines="None">
+                        GridLines="None"
+                        
+                        AllowPaging="true"
+                        PageSize="10"
+                        OnPageIndexChanging="gvClientes_PageIndexChanging"
+                        >
 
                         <Columns>
 
@@ -245,6 +269,30 @@
         document.getElementById('<%= lblTituloFormulario.ClientID %>').innerText =
             'Nuevo cliente';
     }
+
+
+    function filtrarContactos() {
+
+                const texto = document
+                    .getElementById('<%= txtBuscar.ClientID %>')
+        .value
+        .toLowerCase();
+
+        const grid = document.getElementById('<%= gvClientes.ClientID %>');
+
+        const filas = grid.getElementsByTagName("tr");
+
+                for (let i = 1; i < filas.length; i++) {
+
+                    const contenido = filas[i].innerText.toLowerCase();
+
+                    filas[i].style.display =
+                        contenido.includes(texto) ? "" : "none";
+                }
+            }
+
+
+
         </script>
 
 

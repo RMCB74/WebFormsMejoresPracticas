@@ -258,6 +258,14 @@ namespace WebFormsMejoresPracticas
                 true);
         }
 
+        protected void gvClientes_PageIndexChanging(
+        object sender,
+        GridViewPageEventArgs e)
+            {
+                gvClientes.PageIndex = e.NewPageIndex;
+                    CargarClientes();
+            }
+
 
     }
 }
