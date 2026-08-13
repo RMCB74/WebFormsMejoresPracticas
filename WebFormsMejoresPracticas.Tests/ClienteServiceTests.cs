@@ -504,6 +504,27 @@ namespace WebFormsMejoresPracticas.Tests
                 clienteCreado.Nombre);
         }
 
+        //CI/CD
+        //se quedo git https://chatgpt.com/share/6a7df658-51b8-83e8-a5b7-138dff5bc894
+        //git bare local origin master https://chatgpt.com/share/6a7dfb92-a22c-83e8-a5eb-4ad1f6738af7
+
+        //java ESTE NO https://adoptium.net/es/temurin/releases?version=21&utm_source=chatgpt.com
+        //EN LA CONSOLA winget search EclipseAdoptium
+
+
+        //vanzo cxonfigurar y detener y desma de jenkins https://chatgpt.com/share/6a7e0bfc-4fb0-83e8-99df-31c5b81e3cec
+
+        //su inche mdre  https://chatgpt.com/share/6a7e127d-43b4-83e8-a4ac-4c221c4ed1fd
+        // rutas nugets descargas configurar
+
+        //quedaron https://chatgpt.com/share/6a7e14c6-601c-83e8-8942-71930f35f153
+        //https://chatgpt.com/share/6a7e1685-57f0-83e8-ada2-c403494f9ab0
+
+
+        ///kbrn  https://chatgpt.com/share/6a7e1fdb-cc90-83e8-b32f-b8cb64569e5d
+        /// https://chatgpt.com/share/6a7e25d5-2864-83e8-b746-8e474142dacf
+
+
 
     }
 
