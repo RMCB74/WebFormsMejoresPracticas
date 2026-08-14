@@ -19,14 +19,41 @@ namespace WebFormsMejoresPracticas.Services
             _logger = logger;
         }
 
-        public List<Contacto> ObtenerTodos()
+        //public List<Contacto> ObtenerTodos()
+        //{
+        //    try
+        //    {
+        //        _logger.LogInformation(
+        //            "Iniciando consulta de contactos.");
+
+        //        return _contactoRepository.ObtenerTodos();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(
+        //            ex,
+        //            "Error al obtener los contactos.");
+
+        //        throw;
+        //    }
+        //}
+
+        public ResultadoLista<Contacto> ObtenerTodos()
         {
             try
             {
                 _logger.LogInformation(
                     "Iniciando consulta de contactos.");
 
-                return _contactoRepository.ObtenerTodos();
+                var contactos =
+                    _contactoRepository.ObtenerTodos();
+
+                return new ResultadoLista<Contacto>
+                {
+                    Exitoso = true,
+                    Mensaje = "Contactos obtenidos correctamente.",
+                    Datos = contactos
+                };
             }
             catch (Exception ex)
             {
@@ -38,7 +65,27 @@ namespace WebFormsMejoresPracticas.Services
             }
         }
 
-        public Contacto ObtenerPorId(int id)
+        //public Contacto ObtenerPorId(int id)
+        //{
+        //    try
+        //    {
+        //        _logger.LogInformation(
+        //            "Iniciando consulta de contacto. Id: {ContactoId}",
+        //            id);
+
+        //        return _contactoRepository.ObtenerPorId(id);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(
+        //            ex,
+        //            "Error al obtener contacto. Id: {ContactoId}",
+        //            id);
+
+        //        throw;
+        //    }
+        //}
+        public Resultado<Contacto> ObtenerPorId(int id)
         {
             try
             {
@@ -46,7 +93,17 @@ namespace WebFormsMejoresPracticas.Services
                     "Iniciando consulta de contacto. Id: {ContactoId}",
                     id);
 
-                return _contactoRepository.ObtenerPorId(id);
+                var contacto =
+                    _contactoRepository.ObtenerPorId(id);
+
+                return new Resultado<Contacto>
+                {
+                    Exitoso = contacto != null,
+                    Mensaje = contacto != null
+                        ? "Contacto encontrado correctamente."
+                        : "No se encontró el contacto.",
+                    Datos = contacto
+                };
             }
             catch (Exception ex)
             {

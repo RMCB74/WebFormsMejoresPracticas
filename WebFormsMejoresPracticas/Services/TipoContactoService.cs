@@ -16,19 +16,50 @@ namespace WebFormsMejoresPracticas.Services
             _tipoContactoRepository = tipoContactoRepository;
         }
 
-        public TipoContacto ObtenerPorId(int id)
+        //public TipoContacto ObtenerPorId(int id)
+        //{
+        //    if (id <= 0)
+        //        throw new ArgumentException(
+        //            "El Id del tipo de contacto debe ser mayor que cero.",
+        //            nameof(id));
+
+        //    return _tipoContactoRepository.ObtenerPorId(id);
+        //}
+        public Resultado<TipoContacto> ObtenerPorId(int id)
         {
             if (id <= 0)
                 throw new ArgumentException(
-                    "El Id del tipo de contacto debe ser mayor que cero.",
+                    "El Id del cliente debe ser mayor que cero.",
                     nameof(id));
 
-            return _tipoContactoRepository.ObtenerPorId(id);
+            var tipoContacto = _tipoContactoRepository.ObtenerPorId(id);
+
+            return new Resultado<TipoContacto>
+            {
+                Exitoso = tipoContacto != null,
+                Mensaje = tipoContacto != null
+                    ? "Cliente encontrado correctamente."
+                    : "No se encontró el cliente.",
+                Datos = tipoContacto
+            };
         }
 
-        public List<TipoContacto> ObtenerTodos()
+
+        //public List<TipoContacto> ObtenerTodos()
+        //{
+        //    return _tipoContactoRepository.ObtenerTodos();
+        //}
+                
+        public ResultadoLista<TipoContacto> ObtenerTodos()
         {
-            return _tipoContactoRepository.ObtenerTodos();
+            var tiposContacto = _tipoContactoRepository.ObtenerTodos();
+
+            return new ResultadoLista<TipoContacto>
+            {
+                Exitoso = true,
+                Mensaje = "Tipos de contacto obtenidos correctamente.",
+                Datos = tiposContacto
+            };  
         }
 
         public int Crear(TipoContacto tipoContacto)

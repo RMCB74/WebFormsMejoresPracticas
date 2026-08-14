@@ -8,9 +8,11 @@ namespace WebFormsMejoresPracticas.Services
 {
     public interface IClienteService
     {
-        Cliente ObtenerPorId(int id);
+        //Cliente ObtenerPorId(int id);
+        Resultado<Cliente> ObtenerPorId(int id);
 
-        List<Cliente> ObtenerTodos();
+        //List<Cliente> ObtenerTodos();
+        ResultadoLista<Cliente> ObtenerTodos();
 
         int Crear(Cliente cliente);
 

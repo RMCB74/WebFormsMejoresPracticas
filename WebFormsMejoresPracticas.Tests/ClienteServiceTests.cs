@@ -153,14 +153,24 @@ namespace WebFormsMejoresPracticas.Tests
                 // Assert
                 Assert.IsTrue(id > 0);
 
-                var clienteCreado = service.ObtenerPorId(id);
+                //var clienteCreado = service.ObtenerPorId(id);
+                var resultado = service.ObtenerPorId(id);
 
-                Assert.IsNotNull(clienteCreado);
-                Assert.AreEqual(id, clienteCreado.Id);
+
+                //Assert.IsNotNull(clienteCreado);
+                //Assert.AreEqual(id, clienteCreado.Id);
+
+                //Assert.AreEqual(
+                //generonom,
+                //clienteCreado.Nombre);
+
+                Assert.IsTrue(resultado.Exitoso);
+                Assert.IsNotNull(resultado.Datos);
+                Assert.AreEqual(id, resultado.Datos.Id);
 
                 Assert.AreEqual(
-                generonom,
-                clienteCreado.Nombre);
+                    generonom,
+                    resultado.Datos.Nombre);
 
 
                 //Assert.AreEqual(
@@ -222,14 +232,24 @@ namespace WebFormsMejoresPracticas.Tests
                 service.Actualizar(cliente);
 
                 // Consultar nuevamente
-                var clienteActualizado = service.ObtenerPorId(id);
+                //var clienteActualizado = service.ObtenerPorId(id);
+                var resultado = service.ObtenerPorId(id);
+
 
                 // Verificar
-                Assert.IsNotNull(clienteActualizado);
-                Assert.AreEqual(id, clienteActualizado.Id);
+                //Assert.IsNotNull(clienteActualizado);
+                //Assert.AreEqual(id, clienteActualizado.Id);
+                //Assert.AreEqual(
+                //    cliente.Nombre,
+                //    clienteActualizado.Nombre);
+
+                Assert.IsTrue(resultado.Exitoso);
+                Assert.IsNotNull(resultado.Datos);
+                Assert.AreEqual(id, resultado.Datos.Id);
                 Assert.AreEqual(
                     cliente.Nombre,
-                    clienteActualizado.Nombre);
+                    resultado.Datos.Nombre);
+
             }
             finally
             {
@@ -279,18 +299,26 @@ namespace WebFormsMejoresPracticas.Tests
                 service.Eliminar(id);
 
                 // Assert
-                var clienteEliminado = service.ObtenerPorId(id);
+                //var clienteEliminado = service.ObtenerPorId(id);
+                var resultado = service.ObtenerPorId(id);
 
-                Assert.IsNull(clienteEliminado);
+                //Assert.IsNull(clienteEliminado);
+                Assert.IsFalse(resultado.Exitoso);
+                Assert.IsNull(resultado.Datos);
             }
             finally
             {
                 // Cleanup de seguridad
                 if (id > 0)
                 {
-                    var clienteExistente = service.ObtenerPorId(id);
+                    //var clienteExistente = service.ObtenerPorId(id);
+                    var resultado = service.ObtenerPorId(id);
 
-                    if (clienteExistente != null)
+                    //if (clienteExistente != null)
+                    //{
+                    //    service.Eliminar(id);
+                    //}
+                    if (resultado.Datos != null)
                     {
                         service.Eliminar(id);
                     }
@@ -370,13 +398,21 @@ namespace WebFormsMejoresPracticas.Tests
 
                 if (clienteId > 0)
                 {
-                    var clienteExistente =
-                        clienteService.ObtenerPorId(clienteId);
+                    //var clienteExistente =
+                    //    clienteService.ObtenerPorId(clienteId);
+                    var resultado =
+                         clienteService.ObtenerPorId(clienteId);
 
-                    if (clienteExistente != null)
+
+                    //if (clienteExistente != null)
+                    //{
+                    //    clienteService.Eliminar(clienteId);
+                    //}
+                    if (resultado.Datos != null)
                     {
                         clienteService.Eliminar(clienteId);
                     }
+
                 }
             }
         }
@@ -493,15 +529,25 @@ namespace WebFormsMejoresPracticas.Tests
             // Act
             int id = service.Crear(cliente);
 
-            var clienteCreado =
+            //var clienteCreado =
+            //    service.ObtenerPorId(id);
+            var resultado =
                 service.ObtenerPorId(id);
 
             // Assert
+            //Assert.IsTrue(id > 0);
+            //Assert.IsNotNull(clienteCreado);
+            //Assert.AreEqual(
+            //    "Cliente Fake",
+            //    clienteCreado.Nombre);
             Assert.IsTrue(id > 0);
-            Assert.IsNotNull(clienteCreado);
+            Assert.IsTrue(resultado.Exitoso);
+            Assert.IsNotNull(resultado.Datos);
+
             Assert.AreEqual(
                 "Cliente Fake",
-                clienteCreado.Nombre);
+                resultado.Datos.Nombre);
+
         }
 
         //CI/CD

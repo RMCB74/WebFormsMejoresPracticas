@@ -49,16 +49,28 @@ namespace WebFormsMejoresPracticas
             {
                 int id = Convert.ToInt32(e.CommandArgument);
 
-                var tipoContacto =
+                //var tipoContacto =
+                //    _tipoContactoService.ObtenerPorId(id);
+
+                var resultado =
                     _tipoContactoService.ObtenerPorId(id);
 
-                if (tipoContacto == null)
+                //if (tipoContacto == null)
+                //{
+                //    MostrarMensaje(
+                //        "No se encontró el tipo de contacto.");
+
+                //    return;
+                //}
+                if (!resultado.Exitoso)
                 {
                     MostrarMensaje(
-                        "No se encontró el tipo de contacto.");
+                        resultado.Mensaje);
 
                     return;
                 }
+
+                var tipoContacto = resultado.Datos;
 
                 hfTipoContactoId.Value =
                     tipoContacto.Id.ToString();
@@ -152,12 +164,21 @@ namespace WebFormsMejoresPracticas
             OcultarMensaje();
         }
 
+        //private void CargarTiposContacto()
+        //{
+        //    var tiposContacto =
+        //        _tipoContactoService.ObtenerTodos();
+
+        //    gvTiposContacto.DataSource = tiposContacto;
+
+        //    gvTiposContacto.DataBind();
+        //}
         private void CargarTiposContacto()
         {
-            var tiposContacto =
+            var resultado =
                 _tipoContactoService.ObtenerTodos();
 
-            gvTiposContacto.DataSource = tiposContacto;
+            gvTiposContacto.DataSource = resultado.Datos;
 
             gvTiposContacto.DataBind();
         }

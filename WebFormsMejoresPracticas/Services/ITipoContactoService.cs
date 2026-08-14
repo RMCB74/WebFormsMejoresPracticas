@@ -5,9 +5,12 @@ namespace WebFormsMejoresPracticas.Services
 {
     public interface ITipoContactoService
     {
-        TipoContacto ObtenerPorId(int id);
+        //TipoContacto ObtenerPorId(int id);
 
-        List<TipoContacto> ObtenerTodos();
+        Resultado<TipoContacto> ObtenerPorId(int id);
+
+        // List<TipoContacto> ObtenerTodos();
+        ResultadoLista<TipoContacto> ObtenerTodos();
 
         int Crear(TipoContacto tipoContacto);
 

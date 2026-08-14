@@ -67,13 +67,20 @@ namespace WebFormsMejoresPracticas
         }
 
 
-        private void CargarContactos()
-        {
-            var contactos = _contactoService.ObtenerTodos();
+        //private void CargarContactos()
+        //{
+        //    var contactos = _contactoService.ObtenerTodos();
 
-            gvContactos.DataSource = contactos;
+        //    gvContactos.DataSource = contactos;
+        //    gvContactos.DataBind();
+        //}
+        private void CargarContactos()
+        {             
+            var resultado = _contactoService.ObtenerTodos();
+            gvContactos.DataSource = resultado.Datos;
             gvContactos.DataBind();
         }
+
 
         //protected void btnGuardar_Click(object sender, EventArgs e)
         //{
@@ -149,11 +156,24 @@ namespace WebFormsMejoresPracticas
         }
 
 
+        //private void CargarClientes()
+        //{
+        //    var clientes = _clienteService.ObtenerTodos();
+
+        //    ddlCliente.DataSource = clientes;
+        //    ddlCliente.DataTextField = "Nombre";
+        //    ddlCliente.DataValueField = "Id";
+        //    ddlCliente.DataBind();
+
+        //    ddlCliente.Items.Insert(
+        //        0,
+        //        new ListItem("-- Seleccione cliente --", "0"));
+        //}
         private void CargarClientes()
         {
-            var clientes = _clienteService.ObtenerTodos();
+            var resultado = _clienteService.ObtenerTodos();
 
-            ddlCliente.DataSource = clientes;
+            ddlCliente.DataSource = resultado.Datos;
             ddlCliente.DataTextField = "Nombre";
             ddlCliente.DataValueField = "Id";
             ddlCliente.DataBind();
@@ -163,11 +183,14 @@ namespace WebFormsMejoresPracticas
                 new ListItem("-- Seleccione cliente --", "0"));
         }
 
+
         private void CargarTiposContacto()
         {
-            var tiposContacto = _tipoContactoService.ObtenerTodos();
+            //var tiposContacto = _tipoContactoService.ObtenerTodos();
+            var resultado = _tipoContactoService.ObtenerTodos();
 
-            ddlTipoContacto.DataSource = tiposContacto;
+            //ddlTipoContacto.DataSource = tiposContacto;
+            ddlTipoContacto.DataSource = resultado.Datos;
             ddlTipoContacto.DataTextField = "Descripcion";
             ddlTipoContacto.DataValueField = "Id";
             ddlTipoContacto.DataBind();
@@ -186,22 +209,46 @@ namespace WebFormsMejoresPracticas
 
             if (e.CommandName == "EditarContacto")
             {
-                var contacto =
+                //var contacto =
+                //    _contactoService.ObtenerPorId(id);
+                var resultado =
                     _contactoService.ObtenerPorId(id);
 
-                if (contacto != null)
+
+                //if (contacto != null)
+                //{
+                //    ContactoId = contacto.Id;
+
+                //    ddlCliente.SelectedValue =
+                //        contacto.ClienteId.ToString();
+
+                //    ddlTipoContacto.SelectedValue =
+                //        contacto.TipoContactoId.ToString();
+
+                //    txtValor.Text =
+                //        contacto.Valor;
+                //}
+                if (!resultado.Exitoso)
                 {
-                    ContactoId = contacto.Id;
-
-                    ddlCliente.SelectedValue =
-                        contacto.ClienteId.ToString();
-
-                    ddlTipoContacto.SelectedValue =
-                        contacto.TipoContactoId.ToString();
-
-                    txtValor.Text =
-                        contacto.Valor;
+                    lblMensaje.Text = resultado.Mensaje;
+                    lblMensaje.Visible = true;
+                    return;
                 }
+
+                var contacto = resultado.Datos;
+
+                ContactoId = contacto.Id;
+
+                ddlCliente.SelectedValue =
+                    contacto.ClienteId.ToString();
+
+                ddlTipoContacto.SelectedValue =
+                    contacto.TipoContactoId.ToString();
+
+                txtValor.Text =
+                    contacto.Valor;
+
+
             }
 
             if (e.CommandName == "EliminarContacto")

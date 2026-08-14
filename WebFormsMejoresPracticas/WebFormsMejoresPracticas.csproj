@@ -291,6 +291,8 @@
     <Compile Include="Infrastructure\Logging\LoggerConfig.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Contacto.cs" />
+    <Compile Include="Models\Resultado.cs" />
+    <Compile Include="Models\ResultadoLista.cs" />
     <Compile Include="Models\TipoContacto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClienteRepository.cs" />

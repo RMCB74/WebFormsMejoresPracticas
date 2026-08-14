@@ -50,13 +50,22 @@ namespace WebFormsMejoresPracticas
             {
                 int id = Convert.ToInt32(e.CommandArgument);
 
-                var cliente = _clienteService.ObtenerPorId(id);
+                //var cliente = _clienteService.ObtenerPorId(id);
+                var resultado = _clienteService.ObtenerPorId(id);
 
-                if (cliente == null)
+                //if (cliente == null)
+                //{
+                //    MostrarMensaje("No se encontró el cliente.");
+                //    return;
+                //}
+                if (!resultado.Exitoso)
                 {
-                    MostrarMensaje("No se encontró el cliente.");
+                    MostrarMensaje(resultado.Mensaje);
                     return;
                 }
+
+
+                var cliente = resultado.Datos;
 
                 hfClienteId.Value = cliente.Id.ToString();
 
@@ -139,11 +148,19 @@ namespace WebFormsMejoresPracticas
             OcultarMensaje();
         }
 
+        //private void CargarClientes()
+        //{
+        //    var clientes = _clienteService.ObtenerTodos();
+
+        //    gvClientes.DataSource = clientes;
+        //    gvClientes.DataBind();
+        //}
+
         private void CargarClientes()
         {
-            var clientes = _clienteService.ObtenerTodos();
+            var resultado = _clienteService.ObtenerTodos();
 
-            gvClientes.DataSource = clientes;
+            gvClientes.DataSource = resultado.Datos;//cambio
             gvClientes.DataBind();
         }
 

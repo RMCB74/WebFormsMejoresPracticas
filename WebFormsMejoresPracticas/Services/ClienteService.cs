@@ -20,19 +20,50 @@ namespace WebFormsMejoresPracticas.Services
             _clienteRepository = clienteRepository;
         }
 
-        public Cliente ObtenerPorId(int id)
+        //public Cliente ObtenerPorId(int id)
+        //{
+        //    if (id <= 0)
+        //        throw new ArgumentException(
+        //            "El Id del cliente debe ser mayor que cero.",
+        //            nameof(id));
+
+        //    return _clienteRepository.ObtenerPorId(id);
+        //}
+        public Resultado<Cliente> ObtenerPorId(int id)
         {
             if (id <= 0)
                 throw new ArgumentException(
                     "El Id del cliente debe ser mayor que cero.",
                     nameof(id));
 
-            return _clienteRepository.ObtenerPorId(id);
+            var cliente = _clienteRepository.ObtenerPorId(id);
+
+            return new Resultado<Cliente>
+            {
+                Exitoso = cliente != null,
+                Mensaje = cliente != null
+                    ? "Cliente encontrado correctamente."
+                    : "No se encontró el cliente.",
+                Datos = cliente
+            };
         }
 
-        public List<Cliente> ObtenerTodos()
+
+        //public List<Cliente> ObtenerTodos()
+        //{
+        //    return _clienteRepository.ObtenerTodos();
+        //}
+
+        public ResultadoLista<Cliente> ObtenerTodos()
         {
-            return _clienteRepository.ObtenerTodos();
+            var clientes = _clienteRepository.ObtenerTodos();
+
+            return new ResultadoLista<Cliente>
+            {
+                Exitoso = true,
+                Mensaje = "Clientes obtenidos correctamente.",
+                Datos = clientes
+            };
         }
 
         public int Crear(Cliente cliente)
