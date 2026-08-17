@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+
+
+using System.Collections.Generic;
 using WebFormsSoapService.Interfaces;
 using WebFormsSoapService.Models;
 
@@ -26,11 +29,15 @@ namespace WebFormsSoapService.Services
 
         public int Crear(TipoContacto tipoContacto)
         {
+            ValidarTipoContacto(tipoContacto);
+
             return _tipoContactoRepository.Crear(tipoContacto);
         }
 
         public bool Actualizar(TipoContacto tipoContacto)
         {
+            ValidarTipoContacto(tipoContacto);
+
             return _tipoContactoRepository.Actualizar(tipoContacto);
         }
 
@@ -38,5 +45,17 @@ namespace WebFormsSoapService.Services
         {
             return _tipoContactoRepository.Eliminar(id);
         }
+
+        private void ValidarTipoContacto(TipoContacto tipoContacto)
+        {
+            if (tipoContacto == null)
+                throw new ArgumentException("El tipo de contacto es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(tipoContacto.Descripcion))
+                throw new ArgumentException("La descripción del tipo de contacto es obligatoria.");
+        }
+
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WebFormsSoapService.Interfaces;
 using WebFormsSoapService.Models;
 
@@ -26,12 +27,15 @@ namespace WebFormsSoapService.Services
 
         public int Crear(Cliente cliente)
         {
+            ValidarCliente(cliente);
+
             return _clienteRepository.Crear(cliente);
         }
 
-
         public bool Actualizar(Cliente cliente)
         {
+            ValidarCliente(cliente);
+
             return _clienteRepository.Actualizar(cliente);
         }
 
@@ -39,6 +43,15 @@ namespace WebFormsSoapService.Services
         public bool Eliminar(int id)
         {
             return _clienteRepository.Eliminar(id);
+        }
+
+        private void ValidarCliente(Cliente cliente)
+        {
+            if (cliente == null)
+                throw new ArgumentException("El cliente es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(cliente.Nombre))
+                throw new ArgumentException("El nombre del cliente es obligatorio.");
         }
 
 
