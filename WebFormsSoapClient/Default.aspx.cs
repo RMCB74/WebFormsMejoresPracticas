@@ -35,7 +35,7 @@ namespace WebFormsSoapClient
 
                 var cliente = new ClienteService.Cliente
                 {
-                    Nombre = "Cliente SOAP Prueba"
+                    Nombre =  "Cliente SOAP Prueba"
                 };
 
                 int id = clienteService.CrearCliente(cliente);
