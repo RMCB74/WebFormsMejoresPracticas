@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="../WebFormsSoapClient/WebFormsSoapClient.csproj" Id="c927323e-8055-4695-8a08-59ed603324be">
+    <BuildDependency Project="WebFormsSoapService.csproj" />
+  </Project>
+  <Project Path="../WebFormsSoapService.Tests/WebFormsSoapService.Tests.csproj" />
+  <Project Path="WebFormsSoapService.csproj" Id="896d7207-0726-42eb-aa0d-cf556aefc66c" />
+</Solution>
